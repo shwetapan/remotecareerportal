@@ -15,18 +15,12 @@ def home(request):
    form = SearchForm()
    
    job_list=Jobs.objects.order_by('-date_posted')  
-   voda_jobs = Jobs.objects.filter(company__title='Vodacom')[:5]
-   signma_jobs = Jobs.objects.filter(company__title='11sigma')[:5]
-   anka_jobs = Jobs.objects.filter(company__title='anka')[:5]
-   automattic_jobs = Jobs.objects.filter(company__title='automattic')[:5]
-   argyle_jobs = Jobs.objects.filter(company__title='engineer')
-   
-   
-
-
-   # last_three_days_job = Jobs.objects.filter( date_posted__gte=datetime.now()-timedelta(days=7))
-   
-   
+   voda_jobs = Jobs.objects.filter(company__title='Vodacom')
+   signma_jobs = Jobs.objects.filter(company__title='11sigma')
+   anka_jobs = Jobs.objects.filter(company__title='anka')
+   automattic_jobs = Jobs.objects.filter(company__title='automattic')
+  
+  
    
    
    context = {}
@@ -37,8 +31,7 @@ def home(request):
    context['signma_jobs'] = signma_jobs
    context['anka_jobs'] = anka_jobs
    context['automattic_jobs'] = automattic_jobs
-   context['argyle_jobs'] = argyle_jobs
- 
+
    context['director'] = Category.objects.get(title='Director')
    context['manager'] = Category.objects.get(title='Manager')
    context['engineer'] = Category.objects.get(title='Engineer' or 'Developer' )
@@ -46,7 +39,7 @@ def home(request):
    context['technology'] = Category.objects.get(title='Technology')
    context['consultant'] = Category.objects.get(title='Consultant')
    context['businessAnalyst'] = Category.objects.get(title='Business Analyst')
-   context['projectManager'] = Category.objects.get(title='Project Manager' or 'Manager')
+   context['projectManager'] = Category.objects.get(title='Project Manager')
    job_list=Jobs.objects.order_by('-date_posted')
    context['jobs'] = job_list
  
