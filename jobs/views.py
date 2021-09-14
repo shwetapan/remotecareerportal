@@ -34,7 +34,7 @@ def home(request):
 
    context['director'] = Category.objects.get(title='Director')
    context['manager'] = Category.objects.get(title='Manager')
-   context['engineer'] = Category.objects.get(title='Engineer' or 'Developer' )
+   context['engineer'] = Category.objects.get(title='Engineer'  )
    context['specialist'] = Category.objects.get(title='Specialist')
    context['technology'] = Category.objects.get(title='Technology')
    context['consultant'] = Category.objects.get(title='Consultant')
