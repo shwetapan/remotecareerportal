@@ -90,8 +90,8 @@ DATABASES = {
         'NAME': 'workremotely',
         'USER': config('dbuser'),
         'PASSWORD': config('dbpass'),
-        'HOST': '127.0.0.1',
-        'PORT': '',
+        'HOST': 'ec2-44-198-223-154.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 import dj_database_url
