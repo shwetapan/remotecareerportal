@@ -1,0 +1,199 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        {% block meta %}       
+        {% endblock meta %}              
+    
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}" type="text/css">  
+        <!--Material Icon -->
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/materialdesignicons.min.css' %}" />
+
+        <link rel="stylesheet" href="{% static 'app/css/fontawesome.css' %}">
+
+        <!--Selectize Icon -->   
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/selectize.css' %}" />    
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/nice-select.css' %}" />
+    
+        <!-- Custom  Css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}" />
+
+    </head>
+
+    <body>      
+
+        <!-- Navigation Bar -->
+        <header id="topnav" class="defaultscroll scroll-active">
+            <!-- TagLine Start -->
+            <div class="tagline">
+                <div class="container">
+                    <div class="float-left">
+                        <div class="email">
+                            <a href="#">
+                                <i class="mdi mdi-email"></i> admin@remotecareerportal.com
+                            </a>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">
+                            {% if user.is_authenticated %}
+                                <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{user.first_name}}</a></li>
+                            {% else %}
+                                <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Remote Career Portal</a></li>
+                            {% endif %}
+                            <li class="list-inline-item"><select id="select-lang" class="demo-default"><option value="">English</option></select></li>
+                           
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- TagLine End -->
+
+            <!-- Menu Start -->
+            <div class="container">
+                <!-- Logo container -->
+                <div>
+                    
+                </div>
+                {% if user.is_authenticated %}
+                <div class="buy-button">
+                    <a href="{% url 'profile' %}" class="btn btn-info"><i class="mdi mdi-account mr-2"></i>Profile</a>
+                </div><!-- End Login Button -->  
+
+                <div class="buy-button">
+                    <a href="{% url 'logout' %}" class="btn btn-danger"><i class="mdi mdi-account mr-2"></i>Logout</a>
+                </div><!-- End Logout Button -->    
+                {% else %}
+                <div class="buy-button">
+                    <a href="{% url 'register' %}" class="btn btn-primary"><i class="mdi mdi-account mr-2"></i>Register</a>
+                </div><!-- End Register Button -->
+                {% endif %}
+               
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Start Mobile Menu Toggle -->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End Mobile Menu Toggle -->
+                    </div>
+                </div>
+
+                <div id="navigation">
+                <!-- Start Navigation Menu -->
+                    <ul class="navigation-menu">
+                        <li><a href="{% url 'home_page' %}">Home</a></li>
+                        <li><a href="{% url 'blog_home' %}">Blogs</a></li>
+                        <li><a href="{% url 'job-list' %}">Jobs</a></li>
+                    </ul><!-- End Navigation Menu -->
+                </div><!-- End Navigation -->               
+            </div><!-- End Container -->
+        </header>
+        <!-- Navbar End -->
+
+        {% if messages %}
+        {% for message in messages %}
+
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger">
+        {{message}}
+        </div>
+        {% else %}
+        <div class="alert alert-{{message.tags}}">
+        {{message}}
+        </div>
+        {% endif %}
+        
+        {% endfor %}
+        {% endif %}
+       
+
+        {% block body %}   
+
+        {% endblock body %}
+
+        <!-- Footer Start Here -->
+        <footer  class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-12">
+                        <a href="javascript:void(0)"><img src="{% static 'app/images/logo.png' %}" height="40" alt=" Remote Career Portal"></a>
+                        <p class="mt-4">Remote Career Portal is leading job search engine, search for and apply for thousands of jobs online - right here on  remote Career Portal. Save your career information, let companies find you without a hassle.</p>
+                        <ul class="social-icon social list-inline mb-0">
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <p class="text-white mb-4 footer-list-title">Company</p>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="{% url 'about' %}" class="text-foot"><i class="mdi mdi-chevron-light"></i>About Us</a></li>
+                            <li><a href="{% url 'blog_home' %}" class="text-foot"><i class="mdi mdi-chevron-light"></i>Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <p class="text-white mb-4 footer-list-title">Resources</p>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Support</a></li>
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Privacy Policy</a></li>
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Terms and Conditions</a></li>
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>F.A.Q.</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>   
+        </footer>
+        <!-- Footer End Here -->
+
+        <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    <script src="{% static 'app/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'app/js/plugins.js' %}"></script>
+
+    <!-- selectize js -->
+    <script src="{% static 'app/js/selectize.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.nice-select.min.js' %}"></script>
+
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/counter.int.js' %}"></script>
+
+    <script src="{% static 'app/js/app.js' %}"></script>
+    <script src="{% static 'app/js/home.js' %}"></script>
+
+    <script src="{% static 'app/js/message.js' %}"></script>
+
+    <script src="{% static 'app/js/common.js' %}"></script>
+
+    <script src="{% static 'app/js/jquery.params.js' %}"></script>
+
+    <script src="{% static 'app/js/notiflix-2.1.2.min.js' %}"></script>
+
+    <script src="{% static 'app/js/sweetalert-dev.js' %}"></script>
+
+    <script src="{% static 'app/js/citySelect.js' %}"></script>
+
+    
+
+
+ </body>
+</html>

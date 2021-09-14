@@ -1,0 +1,304 @@
+{% extends 'layout2.html' %}
+
+<!DOCTYPE html>
+
+    {% block meta %}
+    <title>Create Resume</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Themesdesign" />
+    {% endblock meta %}
+
+   
+    
+    
+    {% block body %}
+    
+    <!-- Start home -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Create Resume</h4>
+                        <ul class="page-next d-inline-block mb-0">
+                            <li><a href="/" class="text-uppercase font-weight-bold">Home</a></li>
+                            <li><a href="{% url 'profile' %}" class="text-uppercase font-weight-bold">Profile</a></li>                          
+                            <li>
+                                <span class="text-uppercase text-white font-weight-bold">Create Resume</span> 
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end home -->
+
+    <!-- CREATE RESUME START -->
+    <section class="section">
+        <div class="container">
+            <form method="POST" enctype="multiplart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5 class="text-dark">General Information :</h5>
+                    </div>
+    
+                    <div class="col-12 mt-3">
+                        <div class="custom-form p-4 border rounded">
+
+                            <div class="col-md-12"> 
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>{{ error|escape }}</strong>
+                                                <strong>{{ field|escape }}</strong>
+                                            </div>                                   
+                                        {% endfor %}                              
+                                    {% endfor %} 
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong> 
+                                        </div>
+                                    {% endfor %}                          
+                                {% endif %}
+                            </div>  
+
+                            <div class="row mt-4">
+
+                                <div class="col-md-12">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Profile Image :<span class="text-danger">  </span> </label>
+                                        {{form.image}}
+                                    </div>
+                                    {% if form.image.errors %}
+                                        {% for error in form.image.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Date of Birth<span class="text-danger">  </span> :</label>
+                                        {{form.date_birth}}
+                                    </div>
+                                    {% if form.date_birth.errors %}
+                                        {% for error in form.date_birth.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Ethnicity<span class="text-danger">  </span> :</label>
+                                        <br>
+                                        {{form.ethnicity}}
+                                    </div>
+                                    {% if form.ethnicity.errors %}
+                                        {% for error in form.ethnicity.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Sex<span class="text-danger"> </span> :</label>
+                                        <br>
+                                        {{form.sex}}
+                                    </div>
+                                    {% if form.sex.errors %}
+                                        {% for error in form.sex.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Marital Status<span class="text-danger"></span> :</label>
+                                        <br>
+                                        {{form.marital_status}}
+                                    </div>
+                                    {% if form.marital_status.errors %}
+                                        {% for error in form.marital_status.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                
+                            </div>    
+
+
+                        </div>
+                    </div>                
+                </div>
+                
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <h5 class="text-dark">Address:</h5>
+                    </div> 
+
+                    <div class="col-12 mt-3">
+                        <div class="custom-form p-4 border rounder">
+                            <div class="row">
+
+                               <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Address Line 1<span class="text-danger">*</span> :</label>
+                                        {{form.addressLine1}}
+                                    </div>
+                                    {% if form.addressLine1.errors %}
+                                        {% for error in form.addressLine1.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Address Line 2<span class="text-danger"> </span> :</label>
+                                        {{form.addressLine2}}
+                                    </div>
+                                    {% if form.addressLine2.errors %}
+                                        {% for error in form.addressLine2.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Suburb<span class="text-danger"> </span> :</label>
+                                        {{form.suburb}}
+                                    </div>
+                                    {% if form.suburb.errors %}
+                                        {% for error in form.suburb.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">City<span class="text-danger"> </span> :</label>
+                                        {{form.city}}
+                                    </div>
+                                    {% if form.city.errors %}
+                                        {% for error in form.city.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Province<span class="text-danger"> </span> :</label>
+                                        <br>
+                                        {{form.province}}
+                                    </div>
+                                    {% if form.province.errors %}
+                                        {% for error in form.province.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Phone Number<span class="text-danger"></span> :</label>
+                                        {{form.phonenumber}}
+                                    </div>
+                                    {% if form.phonenumber.errors %}
+                                        {% for error in form.phonenumber.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Cover letter :</label>
+                                        {{form.cover_letter}}
+                                    </div>
+                                    {% if form.cover_letter.errors %}
+                                        {% for error in form.cover_letter.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">CV :</label>
+                                        {{form.cv}}
+                                    </div>
+                                    {% if form.cv.errors %}
+                                        {% for error in form.cv.errors %}
+                                            <div class="alert alert-danger">
+                                              <strong>{{ error|escape }}</strong> 
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                
+
+                            </div>
+                        
+                        </div>
+                    </div>               
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-12 mt-4">
+                        <input type="submit" class="submitBnt btn btn-primary" value="Submit Resume">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <!-- CREATE RESUME END -->
+    {% endblock body %}
+
+   
+
+</body>
+</html>

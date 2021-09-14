@@ -1,0 +1,25 @@
+<div class="col-md-6">
+                    <nav aria-label="Page navigation example">
+                        {% if users.has_other_pages %}
+                            <ul class="pagination justify-content-end">
+                                {% if jobs.has_previous %}
+                                    <li><a href="?page={{ jobs.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                    <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+                                {% for i in jobs.paginator.page_range %}
+                                    {% if jobs.number == i %}
+                                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                    {% else %}
+                                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if jobs.has_next %}
+                                    <li><a href="?page={{ jobs.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </nav>
+                </div>

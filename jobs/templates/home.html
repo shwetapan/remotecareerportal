@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Work Remotely</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Themesdesign" />
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+
+    <!--Material Icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/materialdesignicons.min.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/fontawesome.css' %}" />
+
+    <!-- selectize css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/selectize.css' %}" />
+
+    <!--Slider-->
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'app/css/owl.theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'app/css/owl.transitions.css' %}" />
+
+    <!-- Custom  Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/sweetalert.css' %}"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/notiflix-2.1.2.min.css' %}"/>
+
+</head>
+
+<body >
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader -->
+
+    
+     <!-- Navigation Bar -->
+    <header id="topnav" class="defaultscroll scroll-active">
+        <!-- TagLine Start -->
+        <div class="tagline">
+            <div class="container">
+                <div class="float-left">
+                         
+                    <div class="email"> 
+                        <a href="#">
+                            <i class="mdi mdi-email"></i> admin@remotecareerportal.com
+                        </a>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <ul class="topbar-list list-unstyled d-flex" style="margin: 11px 0px;">      
+                        {% if user.is_authenticated %}             
+                            <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>{{user.first_name}}  {{user.last_name}}</a></li>
+                        {% else %}
+                             <li class="list-inline-item"><a href="javascript:void(0);"><i class="mdi mdi-account mr-2"></i>Remote Career Portal</a></li>
+
+                        {% endif %} 
+
+                                                              
+                        <li class="list-inline-item"><select id="select-lang" class="demo-default"><option value="">English</option></select></li>
+
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- TagLine End -->
+
+        <!-- Menu Start -->
+        <div class="container">
+            <div>
+                <a href="home.html" class="logo">
+                    <img src="{% static 'app/images/logo.png' %}" alt="" class="logo-light" height="66">
+                    <img src="{% static 'app/images/logo.png' %}" alt="" class="logo-dark" height="60">
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+
+                <div class="buy-button">
+                 <a href="{% url 'profile' %}" class="btn btn-primary"><i class="mdi mdi-account mr-2"></i>Profile</a>              
+                </div>               
+            {% else %}
+                
+                <div class="buy-button">
+                 <a href="{% url 'register' %}" class="btn btn-primary"><i class="mdi mdi-account mr-2"></i>Register</a>
+                </div><!-- End Register Button -->           
+            {% endif %}
+                                                           
+            <!-- End Logo Container -->
+            <div class="menu-extras">
+                <div class="menu-item">
+                    <!-- Start Mobile Menu Toggle -->
+                    <a class="navbar-toggle">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End Mobile Menu Toggle -->
+                </div>
+            </div>
+
+            <div id="navigation">
+            <!-- Start Navigation Menu -->
+                <ul class="navigation-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'blog_home' %}">Blogs</a></li>
+                    <li><a href="{% url 'job-list' %}">Jobs</a></li>
+                    
+                </ul><!-- End Navigation Menu -->
+            </div><!-- End Navigation -->               
+        </div><!-- End Container -->
+    </header>
+    <!-- Navbar End -->
+
+    <!-- Start Home -->
+    <section class="bg-home" style="background: url('static/app/images/loginbg.jpg') center center;">
+       
+        <div class="home-center">
+            <div class="home-desc-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            {% if messages %}
+                                {% for mesage in messages %}
+                                    <div class="alert alert-{{message.tag}}"></div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <div class="title-heading text-center text-white">
+                                
+                                <h1 class="heading font-weight-bold mb-4 " >Remote Career Portal</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-form-position">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="home-registration-form p-4 mb-3">
+
+                                    <form class="registration-form" method="POST">
+                                        {% csrf_token %}
+
+                                        <div class="row">
+
+                                            <div class="col-lg-5 col-md-6">
+                                                <div class="registration-form-box" >
+                                                    <i class="fa fa-briefcase"></i>
+                                                    
+                                                    {{form.title}}
+                                                    
+                                                   
+                                                </div>
+
+                                                {% if form.title.errors %}
+                                                    {% for error in form.title.errors %}
+                                                        <div class="alert alert-danger">
+                                                            <strong>{{error|escape}}</strong>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
+
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6">
+                                                <div class="registration-form-box">
+                                                    <i class="fa fa-location-arrow"></i>
+                                                    {{form.typeofjob}}
+                                                
+                                                </div>
+
+                                                {% if form.typeofjob.errors %}
+                                                    {% for error in form.typeofjob.errors %}
+                                                        <div class="alert alert-danger">
+                                                            <strong>{{error|escape}}</strong>
+                                                        </div>
+                                                    {% endfor %}
+                                                {% endif %}
+
+                                            </div>
+                                           
+                                            
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="registration-form-box">
+                                                    <input type="submit" class="submitBnt btn btn-primary btn-block" value="Search Jobs">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end home -->
+
+        
+            
+
+    <section class="site-section">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="text-dark mb-3 font-weight-bold" id="job-name">Remote Career Portal Jobs</h4>
+                </div>
+            </div>
+            
+            <div class="row">   
+
+              <div class="col-lg-12 col-md-12">
+
+                  {% for job in jobs %}
+
+                    <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+
+                      <div class="label text-center pt-2 pb-2">
+
+                        <ul class="list-unstyled best text-white mb-0 text-uppercase">
+                          <li class="list-inline-item"><i mdi mdi-star></i></li>
+                        </ul>
+
+                      </div>
+
+                      <div class="p-4">
+
+                        <div class="row align-items-center">
+                          <div class="col-md-2">
+                            <div class="mo-mb-2">
+                              <img src="{{ job.company.companyLogo.url }}" alt="" class="img-fluid mx-auto d-block">
+                            </div>
+                          </div>
+
+                          <div class="col-md-3">
+                            <div>
+                              <h5 class="f-18"><a href="{% url 'job-detail' job.slug %}" class="text-dark">{{job.title}}</a></h5>
+                              <p class="text-muted mb-0">{{ job.company.title }}</p>
+                            </div>
+                          </div>
+
+                          <div class="col-md-3">
+                            {% if job.location %}
+                              <div>
+                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker text-primary mr-2"></i>{{job.location}}</p>
+                              </div>
+                            {% endif %}
+                          </div>
+
+                          <div class="col-md-2">
+                            {% if job.salary %}
+                              <div>
+                                <p class="text-muted mb-0 mo-mb-2">{{job.salary}}</p>
+                              </div>
+                            {% endif %}
+                          </div>
+
+                          <div class="col-md-2">
+                            {% if job.job_type %}
+                              <div>
+                                <p class="text-muted mb-0">{{job.job_type}}</p>
+                              </div>
+                            {% endif %}
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                        <div class="p-3 bg-light">
+                            <div class="row">
+                              <div class="col-md-4">
+                                {% if job.date_posted %}
+                                  <div>
+                                    <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Date Posted:</span>{{job.date_posted}}</p>
+                                  </div>
+                                {% endif %}
+                              </div>
+                              <div class="col-md-6">
+                                {% if job.contract_type %}
+                                  <div>
+                                    <p class="text-muted mb-0 mo-mb-2"><span class="text-dark">Contract Type :</span>{{job.contract_type}}</p>
+                                  </div>
+                                {% endif %}
+                              </div>
+                               <div class="col-md-2">                               
+                                  <div>
+                                    <a href="{% url 'job-detail' job.slug %}" class="text-primary">Apply Now <i class="mdi mdi-chevron"></i></a>
+                                  </div> 
+
+                              </div>
+
+                            </div>
+                          </div>
+
+                    </div>
+
+                  {% endfor %}
+               </div>
+                     
+            </div>
+            <br>           
+           <div class="row pagination-wrap">
+                <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+                    <span>Showing 1-7 Of 43,167 Jobs</span>
+                </div>
+                <div class="col-md-6">
+                    <nav aria-label="Page navigation example">
+                        
+                           {% if jobs.has_other_pages %}
+                                <ul class="pagination justify-content-end">
+                                    {% if jobs.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ jobs.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="disabled page-item"><span>&laquo;</span></li>
+                                    {% endif %}
+                                    {% for i in jobs.paginator.page_range %}                                        
+                                        {% if jobs.number == i %}
+                                            <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only ">(current)</span></span></li>
+                                        {% else %}
+                                            <li class=" page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if jobs.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ jobs.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="disabled page-item"><span>&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+     
+
+    <!-- popular category start -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="section-title text-center mb-4 pb-2">
+                        <h4 class="title title-line pb-5">Find Your Jobs</h4>
+                        <p class="text-muted para-desc mx-auto mb-1">The number one leading online job and career searching platform. Find your next job today on Work Remotely</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' director.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-account d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{director.title}}</h5>
+                                <p class="text-success mb-0 rounded">780 Jobs</p>
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' projectManager.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-desktop-classic d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{projectManager.title}}</h5>
+                                <p class="text-success mb-0 rounded">1270 Jobs</p> 
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' technology.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-bank d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{technology.title}}</h5>
+                                <p class="text-success mb-0 rounded">2024 Jobs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' engineer.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-auto-fix d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{engineer.title}}</h5>
+                                <p class="text-success mb-0 rounded">786 Jobs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' specialist.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-office-building d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{specialist.title}}</h5>
+                                <p class="text-success mb-0 rounded">584 Jobs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' manager.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-telegram d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{manager.title}}</h5>
+                                <p class="text-success mb-0 rounded">542 Jobs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' consultant.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-television-classic d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{consultant.title}}</h5>
+                                <p class="text-success mb-0 rounded">356 Jobs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 mt-4 pt-2">
+                    <a href="{% url 'category-detail' businessAnalyst.slug %}">
+                        <div class="popu-category-box bg-light rounded text-center p-4">
+                            <div class="popu-category-icon mb-3">
+                                <i class="mdi mdi-human d-inline-block rounded-pill h3 text-primary"></i>
+                            </div>
+                            <div class="popu-category-content">
+                                <h5 class="mb-2 text-dark title">{{businessAnalyst.title}}</h5>
+                                <p class="text-success mb-0 rounded">250 Jobs</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+
+   
+    
+
+    <!-- counter start -->
+    <section class="section bg-counter position-relative" style="background: url('static/app/images/bg-counters.jpg') center center;">
+        <div class="bg-overlay bg-overlay-gradient"></div>
+        <div class="container">
+            <div class="row" id="counter">
+                <div class="col-md-3 col-6">
+                    <div class="home-counter pt-4 pb-4">
+                        <div class="float-left counter-icon mr-3">
+                            <i class="mdi mdi-bank h1 text-white"></i>
+                        </div>
+                        <div class="counter-content overflow-hidden">
+                            <h1 class="counter-value text-white mb-1" id="companyCount">10</h1>
+                            <p class="counter-name text-white text-uppercase mb-0">Companies</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="home-counter pt-4 pb-4">
+                        <div class="float-left counter-icon mr-3">
+                            <i class="mdi mdi-file-document-box h1 text-white"></i>
+                        </div>
+                        <div class="counter-content overflow-hidden">
+                            <h1 class="counter-value text-white mb-1" id="applicationCount">80</h1>
+                            <p class="counter-name text-white text-uppercase mb-0">Applications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6">
+                    <div class="home-counter pt-4 pb-4">
+                        <div class="float-left counter-icon mr-3">
+                            <i class="mdi mdi-calendar-multiple-check h1 text-white"></i>
+                        </div>
+                        <div class="counter-content overflow-hidden">
+                            <h1 class="counter-value text-white mb-1"  id="jobCount">10</h1>
+                            <p class="counter-name text-white text-uppercase mb-0">Job Posted</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="home-counter pt-4 pb-4">
+                        <div class="float-left counter-icon mr-3">
+                            <i class="mdi mdi-account-multiple-plus h1 text-white"></i>
+                        </div>
+                        <div class="counter-content overflow-hidden">
+                            <h1 class="counter-value text-white mb-1" id="memberCount">10</h1>
+                            <p class="counter-name text-white text-uppercase mb-0">Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- counter end -->
+
+    <hr>
+     <!-- Footer Start Here -->
+   <footer  class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-12">
+                <a href="javascript:void(0)">Work Remotely</a>
+                <p class="mt-4">Careers Portal is leading career search engine, search for and apply for thousands of jobs online - right here on Career Portal. Save your career information, let companies find you without a hassle.</p>
+                <ul class="social-icon social list-inline mb-0">
+                    <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-12">
+                <p class="text-white mb-4 footer-list-title">Company</p>
+                <ul class="list-unstyled footer-list">
+                    <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>About Us</a></li>
+                    <li><a href="{% url 'blog_home' %}" class="text-foot"><i class="mdi mdi-chevron-light"></i>Blog</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-12">
+                <p class="text-white mb-4 footer-list-title">Resources</p>
+                <ul class="list-unstyled footer-list">
+                    <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Support</a></li>
+                    <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Privacy Policy</a></li>
+                    <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Terms and Conditions</a></li>
+                    <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>F.A.Q.</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>   
+   </footer>
+<!-- Footer End Here -->
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top rounded text-center" id="back-to-top"> 
+        <i class="mdi mdi-chevron-up d-block"> </i> 
+    </a>
+    <!-- Back to top -->
+
+    <!-- javascript -->
+    <script src="{% static 'app/js/jquery.min.js' %}"></script>
+    <script src="{% static 'app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'app/js/plugins.js' %}"></script>
+
+    <!-- selectize js -->
+    <script src="{% static 'app/js/selectize.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.nice-select.min.js' %}"></script>
+
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/counter.int.js' %}"></script>
+
+    <script src="{% static 'app/js/app.js' %}"></script>
+    <script src="{% static 'app/js/home.js' %}"></script>
+
+    <script src="{% static 'app/js/message.js' %}"></script>
+
+    <script src="{% static 'app/js/common.js' %}"></script>
+
+    <script src="{% static 'app/js/jquery.params.js' %}"></script>
+
+    <script src="{% static 'app/js/notiflix-2.1.2.min.js' %}"></script>
+
+    <script src="{% static 'app/js/sweetalert-dev.js' %}"></script>
+
+    <script src="{% static 'app/js/citySelect.js' %}"></script>
+
+    <script type="text/javascript">
+        {% comment %} var activeTab;
+      
+        $(document).ready(function(){
+            
+            $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+                localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
+            activeTab = localStorage.getItem('activeTab');
+            if(activeTab){
+                $('#myTab a[href="' + activeTab + '"]').tab('show');
+             
+            }
+            
+        }); {% endcomment %}
+
+        
+
+        
+
+                       
+
+
+        
+
+        
+        
+    </script>
+
+</body>
+</html>
