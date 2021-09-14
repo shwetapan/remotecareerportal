@@ -27,14 +27,14 @@ def home(request):
    # context['anka_jobs'] = anka_jobs
    # context['automattic_jobs'] = automattic_jobs
 
-   context['director'] = Category.objects.get(title='Director')
-   context['manager'] = Category.objects.get(title='Manager')
-   context['engineer'] = Category.objects.get(title='Engineer'  )
-   context['specialist'] = Category.objects.get(title='Specialist')
-   context['technology'] = Category.objects.get(title='Technology')
-   context['consultant'] = Category.objects.get(title='Consultant')
-   context['businessAnalyst'] = Category.objects.get(title='Business Analyst')
-   context['projectManager'] = Category.objects.get(title='Project Manager')
+   # context['director'] = Category.objects.get(title='Director')
+   # context['manager'] = Category.objects.get(title='Manager')
+   # context['engineer'] = Category.objects.get(title='Engineer'  )
+   # context['specialist'] = Category.objects.get(title='Specialist')
+   # context['technology'] = Category.objects.get(title='Technology')
+   # context['consultant'] = Category.objects.get(title='Consultant')
+   # context['businessAnalyst'] = Category.objects.get(title='Business Analyst')
+   # context['projectManager'] = Category.objects.get(title='Project Manager')
    job_list=Jobs.objects.order_by('-date_posted')
    context['jobs'] = job_list
  
