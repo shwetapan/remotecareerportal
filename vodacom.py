@@ -71,32 +71,33 @@ for x in table:
 
 
 # the_user = User.objects.get(username='admin')
-the_company = Company.objects.get(uniqueId='790c8492')
+if Company.objects is not None:
+  the_company = Company.objects.get(uniqueId='790c8492')
 
 for test_job in final_jobs:
-
-  if 'Director' in test_job['title']:
-    the_category = Category.objects.get(title='Director')
-  elif 'Engineer' in test_job['title']:
-    the_category = Category.objects.get(title='Engineer')
-  elif 'Developer' in test_job['title']:
-    the_category = Category.objects.get(title='Developer')
-  elif 'Databases' in test_job['title']:
-    the_category = Category.objects.get(title='Databases')
-  elif 'Business Analyst' in test_job['title']:
-    the_category = Category.objects.get(title='Business Analyst')
-  elif 'Technology' in test_job['title']:
-    the_category = Category.objects.get(title='Technology')
-  elif 'Research' in test_job['title']:
-    the_category = Category.objects.get(title='Research')
-  elif 'Trainee' in test_job['title']:
-    the_category = Category.objects.get(title='Trainee')
-  elif 'Specialist' in test_job['title']:
-    the_category = Category.objects.get(title='Specialist')
-  elif 'Manager' in test_job['title']:
-    the_category = Category.objects.get(title='Manager')
-  else:
-    the_category = Category.objects.get(title='Uncategorised')
+  if Category.objects is not None:
+    if 'Director' in test_job['title']:
+      the_category = Category.objects.get(title='Director')
+    elif 'Engineer' in test_job['title']:
+      the_category = Category.objects.get(title='Engineer')
+    elif 'Developer' in test_job['title']:
+      the_category = Category.objects.get(title='Developer')
+    elif 'Databases' in test_job['title']:
+      the_category = Category.objects.get(title='Databases')
+    elif 'Business Analyst' in test_job['title']:
+      the_category = Category.objects.get(title='Business Analyst')
+    elif 'Technology' in test_job['title']:
+      the_category = Category.objects.get(title='Technology')
+    elif 'Research' in test_job['title']:
+      the_category = Category.objects.get(title='Research')
+    elif 'Trainee' in test_job['title']:
+      the_category = Category.objects.get(title='Trainee')
+    elif 'Specialist' in test_job['title']:
+      the_category = Category.objects.get(title='Specialist')
+    elif 'Manager' in test_job['title']:
+      the_category = Category.objects.get(title='Manager')
+    else:
+      the_category = Category.objects.get(title='Uncategorised')
     
 
 
