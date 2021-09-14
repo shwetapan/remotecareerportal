@@ -14,23 +14,18 @@ from functools import reduce
 def home(request):
    form = SearchForm()
    
-   job_list=Jobs.objects.order_by('-date_posted')  
-   voda_jobs = Jobs.objects.filter(company__title='Vodacom')
-   signma_jobs = Jobs.objects.filter(company__title='11sigma')
-   anka_jobs = Jobs.objects.filter(company__title='anka')
-   automattic_jobs = Jobs.objects.filter(company__title='automattic')
-  
-  
+   # job_list=Jobs.objects.order_by('-date_posted')  
+   # voda_jobs = Jobs.objects.filter(company__title='Vodacom')
+   # signma_jobs = Jobs.objects.filter(company__title='11sigma')
+   # anka_jobs = Jobs.objects.filter(company__title='anka')
+   # automattic_jobs = Jobs.objects.filter(company__title='automattic')
    
-   
-   context = {}
+   context = {} 
   
-   
-  
-   context['voda_jobs'] = voda_jobs
-   context['signma_jobs'] = signma_jobs
-   context['anka_jobs'] = anka_jobs
-   context['automattic_jobs'] = automattic_jobs
+   # context['voda_jobs'] = voda_jobs
+   # context['signma_jobs'] = signma_jobs
+   # context['anka_jobs'] = anka_jobs
+   # context['automattic_jobs'] = automattic_jobs
 
    context['director'] = Category.objects.get(title='Director')
    context['manager'] = Category.objects.get(title='Manager')
