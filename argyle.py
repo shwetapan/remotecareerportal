@@ -65,7 +65,7 @@ for x in table:
 
 
 # the_user = User.objects.get(username='admin')
-the_company = Company.objects.get(uniqueId='48410504')
+the_company = Company.objects.get(uniqueId='1477f839')
 
 for test_job in final_jobs:
 

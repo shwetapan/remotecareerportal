@@ -71,7 +71,7 @@ for x in table:
 
 
 # the_user = User.objects.get(username='admin')
-the_company = Company.objects.get(uniqueId='fbdf810d')
+the_company = Company.objects.get(uniqueId='790c8492')
 
 for test_job in final_jobs:
 

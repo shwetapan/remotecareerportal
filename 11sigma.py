@@ -80,7 +80,7 @@ for x in table:
   
   final_jobs.append(job)
 
-the_company = Company.objects.get(uniqueId='3519b5ad')
+the_company = Company.objects.get(uniqueId='5d7fc69c')
 
 for test_job in final_jobs:
 

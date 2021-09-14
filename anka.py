@@ -80,7 +80,7 @@ for x in table:
 
 
 # # the_user = User.objects.get(username='admin')
-the_company = Company.objects.get(uniqueId='ec4a4ddd')
+the_company = Company.objects.get(uniqueId='1b8a7f5a')
 
 for test_job in final_jobs:
 
