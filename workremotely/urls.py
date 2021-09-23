@@ -23,6 +23,8 @@ from django.contrib.auth import views as auth_views
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.urls import re_path
 
 
 
@@ -50,6 +52,7 @@ urlpatterns = [
     path('blog/addpost/', blog_views.add_post, name='addpost'),
     path('blog/updatepost/<int:id>/', blog_views.update_post, name='updatepost'),
     path('blog/delete/<int:id>/', blog_views.delete_post, name='deletepost'),
+    re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     
     
 ]
