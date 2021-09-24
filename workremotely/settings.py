@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=lambda v: [s.strip() for s in v.split(',')])
 
@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'workremotely.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+   'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'workremotely',
-        'USER': config('dbuser'),
-        'PASSWORD': config('dbpass'),
-        'HOST': 'ec2-44-198-223-154.compute-1.amazonaws.com',
+        'USER': 'postgres',
+        'PASSWORD': 'shwetapandit',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -141,8 +141,8 @@ STATICFILES_DIRS = (
 ),
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'uploads') 
-MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media') 
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

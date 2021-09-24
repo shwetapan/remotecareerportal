@@ -20,11 +20,12 @@ from jobs import views as job_views
 from users import views as users_views
 from blog import views as blog_views
 from django.contrib.auth import views as auth_views
+from django.views.static import serve
+from django.urls import re_path
 
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.static import serve
-from django.urls import re_path
+from users.forms import MyPasswordChangeForm
 
 
 
@@ -36,14 +37,14 @@ urlpatterns = [
     path('profile/',users_views.user_profile, name='profile'),
     path('users/create/', users_views.create_resume,name='create-resume'),
     path('users/view/<slug:slug>/', users_views.resume_detail,name='resume-detail'),
-    path('login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
+    path('accounts/login/',auth_views.LoginView.as_view(template_name='login.html'),name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('jobs/',job_views.job_list, name='job-list'),
     path('jobs/<slug:slug>/',job_views.job_detail, name='job-detail'),
     path('jobs/category/<slug:slug>/',job_views.category_detail,name='category-detail'),
     path('forgot-password/',users_views.forgot,name='forgot'),
-    path('password-change/',auth_views.PasswordChangeView.as_view(template_name='password-change.html'),name='password-change'),
-    path('password-change-done/',auth_views.PasswordChangeView.as_view(template_name='password-change-done.html'),name='password-change-done'),
+    path('passwordchange/', auth_views.PasswordChangeView.as_view(template_name='password-change.html', form_class=MyPasswordChangeForm,success_url='/passwordchangedone/'), name='password-change'),
+    path('passwordchangedone/', auth_views.PasswordChangeView.as_view(template_name='password-change-done.html'), name='passwordchangedone'),
     path('download/<str:foldername>/<str:filename>/',users_views.download,name='download'),
     path('blog_homepage/', blog_views.home, name='blog_home'),
     path('blog/about/', blog_views.about, name='about'),
@@ -52,10 +53,10 @@ urlpatterns = [
     path('blog/addpost/', blog_views.add_post, name='addpost'),
     path('blog/updatepost/<int:id>/', blog_views.update_post, name='updatepost'),
     path('blog/delete/<int:id>/', blog_views.delete_post, name='deletepost'),
-    re_path(r'^uploads/upload_images/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
+    re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     
     
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

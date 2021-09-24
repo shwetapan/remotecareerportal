@@ -98,7 +98,7 @@ class Resume(models.Model):
 
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   uniqueId = models.CharField(null=True,blank=True, max_length=100)
-  image  = models.ImageField(default='default.jpg', upload_to = 'profile_images')
+  image  = models.ImageField(default='default.jpg', upload_to = 'media')
   email_confirmed = models.BooleanField(default=False)
   date_birth = models.DateField()
   ethnicity = models.CharField(choices=ETHNIC_CHOICES, default=BLACK, max_length=200)

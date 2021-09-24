@@ -63,7 +63,41 @@
 
         {% block body %}
           
-        {% endblock body %}          
+        {% endblock body %}  
+        <!-- Footer Start Here -->
+        <footer  class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-12">
+                        <a href="javascript:void(0)"><img src="{% static 'app/images/logo.png' %}" height="40" alt=" Remote Career Portal"></a>
+                        <p class="mt-4">Remote Career Portal is leading job search engine, search for and apply for thousands of jobs online - right here on  remote Career Portal. Save your career information, let companies find you without a hassle.</p>
+                        <ul class="social-icon social list-inline mb-0">
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <p class="text-white mb-4 footer-list-title">Company</p>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="{% url 'about' %}" class="text-foot"><i class="mdi mdi-chevron-light"></i>About Us</a></li>
+                            <li><a href="{% url 'blog_home' %}" class="text-foot"><i class="mdi mdi-chevron-light"></i>Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <p class="text-white mb-4 footer-list-title">Resources</p>
+                        <ul class="list-unstyled footer-list">
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Support</a></li>
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Privacy Policy</a></li>
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>Terms and Conditions</a></li>
+                            <li><a href="#" class="text-foot"><i class="mdi mdi-chevron-light"></i>F.A.Q.</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>   
+        </footer>
+        <!-- Footer End Here -->        
         </section>
         
         <!-- Hero End -->
