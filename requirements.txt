@@ -41,7 +41,7 @@ soupsieve==2.2.1
 sqlparse==0.4.2
 tzlocal==3.0
 ua-parser==0.10.0
-urllib3==1.26.6
+urllib3==1.26.7
 user-agents==2.2.0
 uuid==1.30
 vine==5.0.0
