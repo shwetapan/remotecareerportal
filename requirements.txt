@@ -1,7 +1,7 @@
 amqp==5.0.6
 APScheduler==3.7.0
 asgiref==3.4.1
-beautifulsoup4==4.9.3
+beautifulsoup4==4.10.0
 billiard==3.6.4.0
 celery==5.1.2
 certifi==2021.5.30
