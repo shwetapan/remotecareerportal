@@ -21,6 +21,7 @@ from users import views as users_views
 from blog import views as blog_views
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
+from django.urls.conf import include
 from django.urls import re_path
 
 from django.conf import settings
