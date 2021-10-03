@@ -54,7 +54,7 @@ urlpatterns = [
     path('blog/updatepost/<int:id>/', blog_views.update_post, name='updatepost'),
     path('blog/delete/<int:id>/', blog_views.delete_post, name='deletepost'),
     re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
-    
+    path('oauth/',include('social_django.urls',namespace='social')),
     
 ]
 
