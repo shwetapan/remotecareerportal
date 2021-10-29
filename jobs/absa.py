@@ -40,7 +40,7 @@ def jobScan(link):
       the_job['date_posted'] = date_posted
       full_part_time = the_divs[3].find_all("span")[1].text
       the_job['full_part_time'] = full_part_time
-      the_job['type'] = 'Full Time'
+      the_job['job_type'] = 'Full Time'
       contract_type = the_divs[4].find_all("span")[1].text
       the_job['contract_type'] = contract_type  
       body = the_divs[5].find_all("span",{"class":"jobdescription"})
@@ -105,7 +105,7 @@ for test_job in final_jobs:
 
     title = test_job['title'],
     location = test_job['location'],
-    type = test_job['type'],
+    job_type = test_job['job_type'],
     contract_type = test_job['contract_type'],
     urlLink = test_job['urlLink'],
     date_posted = date.today(),
