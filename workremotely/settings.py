@@ -92,6 +92,14 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 WSGI_APPLICATION = 'workremotely.wsgi.application'
 
 
@@ -185,12 +193,8 @@ DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-AUTHENTICATION_BACKENDS = (
-    
-    'social.backends.facebook.FacebookOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-    )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '662874654685280'
-SOCIAL_AUTH_FACEBOOK_SECRET = '8599d3b4959ad91c01c5995612e4a6d5'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '586872699291940'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'a4209fbffd8c865457f37668f52cc64f' 
 
