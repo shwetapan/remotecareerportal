@@ -24,7 +24,7 @@ class WelcomeEmail():
   email= {
     "title" : "Thankyou for registering with Remote Careers Portal",
     "shortDescription" : "Welcome to Remote Careers Portal, World's leading job search engine. These are the next steps.",
-   
+    "subtitle" : "",
     "message" : "You have successfully registered with Remote Careers Portal. You can login to your porfile and start creating a profile. We have thousands of jobs just waiting for you to apply. If you experience any difficulties with our portal, simply email our admin team at admin@remotecareerportal.com. Good luck "
     }
 
