@@ -30,7 +30,7 @@ def register(request):
         # send email to user
       to_email = form.cleaned_data.get('email')
       welcome = WelcomeEmail()
-      sendEmail(welcome.email,welcome.subject,to_email)
+      sendEmail(welcome.email,welcome.subject,welcome.subject,to_email)
 
         # send success message to user
       user = form.cleaned_data.get('username')
