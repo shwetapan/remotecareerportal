@@ -96,6 +96,7 @@ class Jobs(models.Model):
   salary = models.CharField(max_length=1000, null=True,blank=True)
   uniqueId = models.CharField( null=True,blank=True, max_length=100)
   job_type = models.CharField(max_length=100,choices=TYPE_CHOICES,default=NOT_PROVIDED)
+  type = models.CharField(max_length=100,choices=TYPE_CHOICES,default=NOT_PROVIDED)
   salary = models.CharField(max_length=30, null=True, blank=True)
   company_description = RichTextField(blank=True, null=True)
   experience = models.CharField(max_length=100,choices=EXP_CHOICES,default=NOT_PROVIDED)
