@@ -70,7 +70,11 @@
 
                     <div class="job-detail-content">
 
-                      <img src="{{ object.company.companyLogo.url }}" alt="" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
+                      {% if object.company.companyLogoUrl %}
+                        <img src="{{ object.company.companyLogoUrl }}" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ object.company.title|urlencode }}&background=random&size=100';" alt="{{ object.company.title }} logo" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
+                      {% else %}
+                        <img src="{{ object.company.companyLogo.url }}" alt="{{ object.company.title }} logo" class="img-fluid float-left mr-md-3 mr-2 mx-auto d-block">
+                      {% endif %}
                       <div class="job-detail-com-desc overflow-hidden d-block">
 
                         <h4 class="mb-2"><a href="#" class="text-dark">{{object.title}}</a></h4>

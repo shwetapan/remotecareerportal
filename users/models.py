@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.db.models.base import Model
 from django.template.defaultfilters import default, slugify
 from django.contrib.auth.models import User
@@ -6,7 +7,7 @@ from django.utils import timezone
 from django.urls import reverse
 from uuid import uuid4
 import random
-from django.contrib.postgres.fields import ArrayField
+
 
 # Create your models here.
 class Resume(models.Model):
@@ -183,7 +184,7 @@ class Experience(models.Model):
   start_date = models.DateField(null=True, blank=True)
   end_date = models.DateField(null=True, blank=True)
   experience = models.TextField(null=True, blank=True)
-  skills = ArrayField(models.CharField(null=True, blank=True, max_length=100))
+  skills = ArrayField(models.CharField(max_length=200), null=True, blank=True)
   date_created = models.DateTimeField(default=timezone.now)
   resume = models.ForeignKey(Resume, on_delete=models.CASCADE)
 

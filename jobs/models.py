@@ -14,6 +14,7 @@ class Company(models.Model):
   description = models.TextField(null=True,blank=True)
   uniqueId = models.CharField(null=True,blank=True,max_length=100)
   companyLogo = models.ImageField(default = 'default.png',upload_to = 'media')
+  companyLogoUrl = models.URLField(max_length=500, blank=True, null=True)
   slug = models.SlugField(max_length=500,unique=True,blank=True,null=True)
   seoDescription = models.CharField(max_length=500,null=True,blank=True)
   seoKeywords = models.CharField(max_length=500, null=True,blank=True)

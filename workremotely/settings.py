@@ -107,17 +107,13 @@ WSGI_APPLICATION = 'workremotely.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'workremotely',
-        'USER': 'postgres',
-        'PASSWORD': 'shwetapandit',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 import dj_database_url
-db_from_envs = dj_database_url.config(conn_max_age=600)
+db_from_envs = dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600)
 DATABASES['default'].update(db_from_envs)
 
 
